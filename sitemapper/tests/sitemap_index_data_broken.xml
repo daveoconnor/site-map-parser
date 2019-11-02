@@ -3,7 +3,7 @@
    <sitemap>
       <loc>http://www.example.com/sitemap_a.xml</loc>
       <lastmod>2004-10-01T18:23:17+00:00</lastmod>
-   </sitemap>
+   <SLASHsitemap>
    <sitemap>
       <loc>http://www.example.com/sitemap_b.xml</loc>
       <lastmod>2005-01-01</lastmod>
