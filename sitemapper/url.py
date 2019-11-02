@@ -7,7 +7,6 @@ class Url:
         :param changefreq: String, How frequently the page is likely to change.
         :param priority: String, The priority of this URL relative to other URLs on your site.
         """
-        self.logger = logging.getLogger(__name__)
         self.loc = loc
         self.lastmod = lastmod
         self.changefreq = changefreq
