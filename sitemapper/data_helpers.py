@@ -35,5 +35,5 @@ def data_to_element(data):
         logger.debug("Downloaded root {}".format(root))
     except SyntaxError as err:
         logger.warning("Parsing failed {}".format(err))
-        raise SyntaxError from err
+        raise err
     return root
