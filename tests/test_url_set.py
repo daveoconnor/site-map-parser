@@ -8,7 +8,7 @@ from unittest.mock import MagicMock
 
 class TestUrlSet:
     def setup(self):
-        url_set_data_bytes = open('sitemapper/tests/urlset_a.xml', 'rb').read()
+        url_set_data_bytes = open('tests/urlset_a.xml', 'rb').read()
         utf8_parser = etree.XMLParser(encoding='utf-8')
         self.url_set_data_xml = etree.parse(BytesIO(url_set_data_bytes), parser=utf8_parser)
         self.url_set_element = self.url_set_data_xml.getroot()
