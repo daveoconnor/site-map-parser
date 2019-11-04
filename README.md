@@ -15,7 +15,7 @@ Handle sitemaps according to: https://www.sitemaps.org/protocol.html
 
 ```python
 sm = SiteMapper(url)
-if sm.is_sitemap_index():
+if sm.has_sitemaps():
     sitemap_list = sm.getSitemaps()
 else:
     url_list = sm.getUrls()
