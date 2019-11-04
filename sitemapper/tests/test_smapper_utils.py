@@ -22,7 +22,7 @@ def test_uri_modifier_ends():
 @mock.patch('argparse.ArgumentParser.parse_args',
             return_value=argparse.Namespace(
                 url='http://www.example.com',
-                logging_level='DEBUG'
+                log='DEBUG'
             ))
 def test_get_args_long(mock_args):
     (url, logging_level) = get_args()
