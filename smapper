@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+import logging
+import sys
+from sitemapper import SiteMapper
+from smapper_utils import uri_modifier, get_args
+from logging.config import fileConfig
+
+def main(uri):
+    uri = uri_modifier(uri)
+    logger.debug("calling uri: {}".format(uri))
+
+    try:
+        sm = SiteMapper(uri)
+    except SyntaxError as e:
+        logger.critical("Parsing error: {}".format(e))
+        sys.exit(1)
+
+    if sm.has_sitemaps():
+        for i in sm.get_sitemaps():
+            print("n {}".format(i))
+    elif sm.has_urls():
+        for i in sm.get_urls():
+            print("i {}".format(i))
+
+if __name__ == '__main__':
+    try:
+        fileConfig('logging_config.ini')
+        logger = logging.getLogger(__name__)
+    except KeyError:
+        print("An error occurred reading logging_config.ini")
+
+    (raw_url, logging_level) = get_args()
+    # set the logging level from the arguments
+    logging.getLogger().setLevel(logging_level if logging_level is not None else 'INFO')
+
+    main(raw_url)
