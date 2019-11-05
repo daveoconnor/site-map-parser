@@ -29,8 +29,8 @@ class TestUrlSet:
 
     def test_urls_from_url_set_element(self):
         urls = UrlSet.urls_from_url_set_element(self.url_set_element)
-        assert len(list(urls)) == 2
+        assert len(list(urls)) == 3
 
     def test_init(self):
         u = UrlSet(self.url_set_element)
-        assert len(list(u.urls)) == 2
+        assert len(list(u.urls)) == 3
