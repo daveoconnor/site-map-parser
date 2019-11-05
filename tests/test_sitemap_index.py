@@ -12,8 +12,6 @@ class TestSitemapIndex:
         self.sitemap_index_xml_root = etree.parse(BytesIO(sitemap_index_data), parser=utf8_parser).getroot()
         self.sitemap_index_element_xml = self.sitemap_index_xml_root[0]
 
-        print("self.sitemap_index_element_xml {}".format(self.sitemap_index_element_xml))
-
     def test_sitemap_from_sitemap_element(self):
         sm = SitemapIndex.sitemap_from_sitemap_element(self.sitemap_index_element_xml)
         assert isinstance(sm, Sitemap)
