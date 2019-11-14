@@ -2,25 +2,30 @@
 import logging
 import sys
 from sitemapper import SiteMapper
-from smapper_utils import uri_modifier, get_args
+from sitemapper.smapper_utils import uri_modifier, get_args, get_exporters
 from logging.config import fileConfig
 
-def main(uri):
+
+def main(uri, exporter):
     uri = uri_modifier(uri)
-    logger.debug("calling uri: {}".format(uri))
+    logger.info("Uri: {}. Exporter: {}".format(uri, exporter))
 
     try:
         sm = SiteMapper(uri)
     except SyntaxError as e:
         logger.critical("Parsing error: {}".format(e))
+        print("An error occurred. Please check sitemapper_run.log for details")
         sys.exit(1)
 
+    exporters = get_exporters()
+    selected_exporter = exporters[exporter]
+    logger.debug("selected_exporter: {}".format(selected_exporter))
+
+    e = selected_exporter(sm)
     if sm.has_sitemaps():
-        for i in sm.get_sitemaps():
-            print("n {}".format(i))
+        print(e.export_sitemaps())
     elif sm.has_urls():
-        for i in sm.get_urls():
-            print("i {}".format(i))
+        print(e.export_urls())
 
 if __name__ == '__main__':
     try:
@@ -29,8 +34,7 @@ if __name__ == '__main__':
     except KeyError:
         print("An error occurred reading logging_config.ini")
 
-    (raw_url, logging_level) = get_args()
-    # set the logging level from the arguments
-    logging.getLogger().setLevel(logging_level if logging_level is not None else 'INFO')
 
-    main(raw_url)
+    (raw_url, logging_level, exporter_format) = get_args(sys.argv[1:])
+    logging.getLogger().setLevel(logging_level)
+    main(raw_url, exporter_format)

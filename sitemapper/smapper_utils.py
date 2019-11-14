@@ -1,0 +1,61 @@
+import argparse
+import inspect
+import logging
+from . import exporters
+
+
+def get_exporters():
+    return {m[1].short_name: m[1] for m in inspect.getmembers(exporters, inspect.isclass)}
+
+
+def uri_modifier(url):
+    if not url.startswith('https://') and not url.startswith('http://'):
+        url = 'http://'+url
+
+    if not url.endswith('.xml'):
+        if not url.endswith('/'):
+            url = url + '/'
+        url = url + 'sitemap.xml'
+    return url
+
+
+def get_args(sys_argv):
+    """
+    :return: (url, log)
+    """
+    logger = logging.getLogger(__name__)
+    exporter_choices = get_exporters().keys()
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument(
+        "url",
+        help="Url & path to sitemap.xml"
+    )
+    arg_parser.add_argument(
+        "--log",
+        "-l",
+        default='INFO',
+        choices=[
+            "CRITICAL",
+            "ERROR",
+            "WARNING",
+            "INFO",
+            "DEBUG",
+        ]
+    )
+    arg_parser.add_argument(
+        "--exporter",
+        "-e",
+        help="Choose which exporter is to be used, defaults to CSV",
+        default='csv',
+        choices=exporter_choices,
+    )
+
+    logger.debug("sys_argv: {}".format(sys_argv))
+    found_args = arg_parser.parse_args(sys_argv)
+    logger.debug("Found arguments: {}".format(found_args))
+
+    return (
+        found_args.url,
+        found_args.log,
+        found_args.exporter
+    )
