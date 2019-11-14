@@ -1,6 +1,6 @@
 import pytest
 
-from sitemapper.exporter import Exporter
+from sitemapparser.exporter import Exporter
 
 
 class TestExporter:

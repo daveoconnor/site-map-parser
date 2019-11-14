@@ -1,9 +1,9 @@
 from unittest.mock import patch, MagicMock
 import csv
 
-from sitemapper.exporters.csv_exporter import CSVExporter
-from sitemapper.sitemap import Sitemap
-from sitemapper.url import Url
+from sitemapparser.exporters import CSVExporter
+from sitemapparser.sitemap import Sitemap
+from sitemapparser.url import Url
 
 
 class TestExporter:

@@ -4,7 +4,7 @@ from .url_set import UrlSet
 from .sitemap_index import SitemapIndex
 
 
-class SiteMapper:
+class SiteMapParser:
     def __init__(self, uri):
         """
         Parses and creates sitemap or url instances for the data retrieved

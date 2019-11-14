@@ -1,5 +1,5 @@
 import pytest
-from sitemapper.sitemap import Sitemap
+from sitemapparser.sitemap import Sitemap
 
 
 class TestSitemap:

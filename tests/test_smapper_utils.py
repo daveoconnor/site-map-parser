@@ -1,4 +1,4 @@
-from sitemapper.smapper_utils import uri_modifier, get_args
+from sitemapparser.smapper_utils import uri_modifier, get_args
 import argparse
 
 def test_uri_modifier_begins():

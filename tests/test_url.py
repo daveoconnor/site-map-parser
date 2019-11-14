@@ -1,5 +1,5 @@
 import pytest
-from sitemapper.url import Url
+from sitemapparser.url import Url
 
 class TestUrl:
     def test_init_fully_loaded(self):

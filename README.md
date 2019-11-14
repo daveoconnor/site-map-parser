@@ -1,4 +1,4 @@
-# Site Mapper
+# Site Map Parser
 
 
 ## Requirements

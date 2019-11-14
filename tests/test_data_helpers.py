@@ -2,7 +2,7 @@ import pytest
 from unittest.mock import Mock
 import requests
 import requests_mock
-from sitemapper.data_helpers import download_uri_data, data_to_element
+from sitemapparser.data_helpers import download_uri_data, data_to_element
 
 
 def test_download_uri_data_sitemap_index():

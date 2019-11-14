@@ -1,9 +1,9 @@
 from unittest.mock import patch, MagicMock
 import json
 
-from sitemapper.exporters.json_exporter import JSONExporter
-from sitemapper.sitemap import Sitemap
-from sitemapper.url import Url
+from sitemapparser.exporters import JSONExporter
+from sitemapparser.sitemap import Sitemap
+from sitemapparser.url import Url
 
 
 class TestExporter:

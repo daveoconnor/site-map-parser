@@ -1,8 +1,8 @@
 import pytest
 from lxml import etree
 from io import BytesIO
-from sitemapper.sitemap_index import SitemapIndex
-from sitemapper.sitemap import Sitemap
+from sitemapparser.sitemap_index import SitemapIndex
+from sitemapparser.sitemap import Sitemap
 
 
 class TestSitemapIndex:

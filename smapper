@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import logging
 import sys
-from sitemapper import SiteMapper
-from sitemapper.smapper_utils import uri_modifier, get_args, get_exporters
+from sitemapparser import SiteMapParser
+from sitemapparser.smapper_utils import uri_modifier, get_args, get_exporters
 from logging.config import fileConfig
 
 
@@ -11,10 +11,10 @@ def main(uri, exporter):
     logger.info("Uri: {}. Exporter: {}".format(uri, exporter))
 
     try:
-        sm = SiteMapper(uri)
+        sm = SiteMapParser(uri)
     except SyntaxError as e:
         logger.critical("Parsing error: {}".format(e))
-        print("An error occurred. Please check sitemapper_run.log for details")
+        print("An error occurred. Please check sitemap_parser_run.log for details")
         sys.exit(1)
 
     exporters = get_exporters()

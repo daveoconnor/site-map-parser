@@ -1,4 +1,4 @@
-from sitemapper.sitemap import Sitemap
+from sitemapparser.sitemap import Sitemap
 import logging
 
 

@@ -2,7 +2,7 @@ import pytest
 from io import BytesIO
 from lxml import etree
 import requests_mock
-from sitemapper.site_mapper import SiteMapper
+from sitemapparser.site_map_parser import SiteMapParser
 
 class TestSiteMapper:
     def setup(self):
@@ -19,14 +19,14 @@ class TestSiteMapper:
 
 
     def test_is_sitemap_index_element(self):
-        sitemap_index_result = SiteMapper._is_sitemap_index_element(self.sitemap_index_xml_root)
-        url_set_result = SiteMapper._is_sitemap_index_element(self.url_set_element)
+        sitemap_index_result = SiteMapParser._is_sitemap_index_element(self.sitemap_index_xml_root)
+        url_set_result = SiteMapParser._is_sitemap_index_element(self.url_set_element)
         assert sitemap_index_result == True
         assert url_set_result == False
 
     def test_is_url_set_element(self):
-        url_set_result = SiteMapper._is_url_set_element(self.url_set_element)
-        sitemap_index_result = SiteMapper._is_url_set_element(self.sitemap_index_xml_root)
+        url_set_result = SiteMapParser._is_url_set_element(self.url_set_element)
+        sitemap_index_result = SiteMapParser._is_url_set_element(self.sitemap_index_xml_root)
         assert url_set_result == True
         assert sitemap_index_result == False
 
@@ -34,7 +34,7 @@ class TestSiteMapper:
         with requests_mock.mock() as m:
             smi_data = open('tests/sitemap_index_data.xml', 'rb').read()
             m.get('http://www.sitemap-example.com', content=smi_data)
-            sm = SiteMapper('http://www.sitemap-example.com')
+            sm = SiteMapParser('http://www.sitemap-example.com')
             site_maps = sm.get_sitemaps()
             assert len(list(site_maps)) == 2
 
@@ -42,7 +42,7 @@ class TestSiteMapper:
         with requests_mock.mock() as m:
             us_data = open('tests/urlset_a.xml', 'rb').read()
             m.get('http://www.url-example.com', content=us_data)
-            sm = SiteMapper('http://www.url-example.com')
+            sm = SiteMapParser('http://www.url-example.com')
             with pytest.raises(KeyError):
                 site_maps = sm.get_sitemaps()
 
@@ -50,7 +50,7 @@ class TestSiteMapper:
         with requests_mock.mock() as m:
             us_data = open('tests/urlset_a.xml', 'rb').read()
             m.get('http://www.url-example.com', content=us_data)
-            sm = SiteMapper('http://www.url-example.com')
+            sm = SiteMapParser('http://www.url-example.com')
             url_set = sm.get_urls()
             assert len(list(url_set)) == 3
 
@@ -58,7 +58,7 @@ class TestSiteMapper:
         with requests_mock.mock() as m:
             smi_data = open('tests/sitemap_index_data.xml', 'rb').read()
             m.get('http://www.sitemap-example.com', content=smi_data)
-            smi = SiteMapper('http://www.sitemap-example.com')
+            smi = SiteMapParser('http://www.sitemap-example.com')
             with pytest.raises(KeyError):
                 url_set = smi.get_urls()
 
@@ -66,7 +66,7 @@ class TestSiteMapper:
         with requests_mock.mock() as m:
             smi_data = open('tests/sitemap_index_data.xml', 'rb').read()
             m.get('http://www.sitemap-example.com', content=smi_data)
-            sm = SiteMapper('http://www.sitemap-example.com')
+            sm = SiteMapParser('http://www.sitemap-example.com')
             assert sm.has_sitemaps() is True
             assert sm.has_urls() is False
 
@@ -74,6 +74,6 @@ class TestSiteMapper:
         with requests_mock.mock() as m:
             us_data = open('tests/urlset_a.xml', 'rb').read()
             m.get('http://www.url-example.com', content=us_data)
-            sm = SiteMapper('http://www.url-example.com')
+            sm = SiteMapParser('http://www.url-example.com')
             assert sm.has_urls() is True
             assert sm.has_sitemaps() is False

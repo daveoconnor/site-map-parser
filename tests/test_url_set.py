@@ -1,8 +1,8 @@
 import pytest
 from lxml import etree
 from io import BytesIO
-from sitemapper.url_set import UrlSet
-from sitemapper.url import Url
+from sitemapparser.url_set import UrlSet
+from sitemapparser.url import Url
 from unittest.mock import MagicMock
 
 
