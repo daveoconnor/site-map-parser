@@ -10,10 +10,10 @@ long_description = long_description.replace("\r", "")
 
 setuptools.setup(
     name="Site Mapper",
-    version="0.0.1",
+    version="0.1.0",
     author="Dave O'Connor",
     author_email="github@dead-pixels.org",
-    description="Script/API to read and parse sitemap.xml data into objects",
+    description="Script/Library to read and parse sitemap.xml data",
     long_description=long_description,
     url="https://github.com/daveoconnor/sitemapper",
     packages=setuptools.find_packages(),
@@ -22,6 +22,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    python_requires='>=3.5',
     tests_require=["pytest"],
     setup_requires=[] + pytest_runner,
 
