@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import logging
+import os
 import sys
 from sitemapparser import SiteMapParser
 from sitemapparser.smapper_utils import uri_modifier, get_args, get_exporters
@@ -8,7 +9,9 @@ from logging.config import fileConfig
 
 def main():
     try:
-        fileConfig('logging_config.ini')
+        log_config = os.path.dirname(__file__) + '/logging_config.ini'
+        log_file = os.path.expanduser("~")+'/sitemap_run.log'
+        fileConfig(log_config, defaults={ 'logfilename': log_file})
     except KeyError:
         print("An error occurred reading logging_config.ini")
 

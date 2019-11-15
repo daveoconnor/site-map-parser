@@ -18,6 +18,8 @@ pip install site-map-parser
 smapper $url > /tmp/data.csv
 ```
 
+Logs written to ~/sitemap_run.log
+
 #### Arguments
 
 | Argument | Options| Default  |  Information| 

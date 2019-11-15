@@ -10,7 +10,7 @@ long_description = long_description.replace("\r", "")
 
 setuptools.setup(
     name="site-map-parser",
-    version="0.1.5",
+    version="0.1.8",
     author="Dave O'Connor",
     author_email="github@dead-pixels.org",
     description="Script/Library to read and parse sitemap.xml data",
