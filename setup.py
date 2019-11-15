@@ -9,13 +9,13 @@ long_description = pypandoc.convert_file('README.md', 'rst')
 long_description = long_description.replace("\r", "")
 
 setuptools.setup(
-    name="Site Map Parser",
-    version="0.1.0",
+    name="site-map-parser",
+    version="0.1.1",
     author="Dave O'Connor",
     author_email="github@dead-pixels.org",
     description="Script/Library to read and parse sitemap.xml data",
     long_description=long_description,
-    url="https://github.com/daveoconnor/sitemapparser",
+    url="https://github.com/daveoconnor/site-map-parser",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

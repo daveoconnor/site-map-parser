@@ -6,15 +6,15 @@ Handle sitemaps according to: https://www.sitemaps.org/protocol.html
    
 ## Installation
 
-```shell script
-pip install sitemapparser
+```
+pip install site-map-parser
 ```
 
 ## Usage
 
 ### Script usage
 
-```shell script
+```
 smapper $url > /tmp/data.csv
 ```
 
