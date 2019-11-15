@@ -6,7 +6,16 @@ from sitemapparser.smapper_utils import uri_modifier, get_args, get_exporters
 from logging.config import fileConfig
 
 
-def main(uri, exporter):
+def main():
+    try:
+        fileConfig('logging_config.ini')
+        logger = logging.getLogger(__name__)
+    except KeyError:
+        print("An error occurred reading logging_config.ini")
+
+    (uri, logging_level, exporter) = get_args(sys.argv[1:])
+    logging.getLogger().setLevel(logging_level)
+
     uri = uri_modifier(uri)
     logger.info("Uri: {}. Exporter: {}".format(uri, exporter))
 
@@ -28,13 +37,4 @@ def main(uri, exporter):
         print(e.export_urls())
 
 if __name__ == '__main__':
-    try:
-        fileConfig('logging_config.ini')
-        logger = logging.getLogger(__name__)
-    except KeyError:
-        print("An error occurred reading logging_config.ini")
-
-
-    (raw_url, logging_level, exporter_format) = get_args(sys.argv[1:])
-    logging.getLogger().setLevel(logging_level)
-    main(raw_url, exporter_format)
+    main()

@@ -22,6 +22,11 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    entry_points={
+        'console_scripts': [
+            'smapper = smapper:main',
+        ],
+    },
     python_requires='>=3.5',
     tests_require=["pytest"],
     setup_requires=[] + pytest_runner,
