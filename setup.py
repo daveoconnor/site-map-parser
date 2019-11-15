@@ -10,7 +10,7 @@ long_description = long_description.replace("\r", "")
 
 setuptools.setup(
     name="site-map-parser",
-    version="0.1.4",
+    version="0.1.5",
     author="Dave O'Connor",
     author_email="github@dead-pixels.org",
     description="Script/Library to read and parse sitemap.xml data",
@@ -26,6 +26,10 @@ setuptools.setup(
         'console_scripts': [
             'smapper = sitemapparser.smapper:main',
         ],
+    },
+    include_package_data=True,
+    package_data={
+        '': ['*.ini'],
     },
     python_requires='>=3.5',
     tests_require=["pytest"],

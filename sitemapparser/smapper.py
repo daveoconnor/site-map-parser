@@ -9,12 +9,12 @@ from logging.config import fileConfig
 def main():
     try:
         fileConfig('logging_config.ini')
-        logger = logging.getLogger(__name__)
     except KeyError:
         print("An error occurred reading logging_config.ini")
 
     (uri, logging_level, exporter) = get_args(sys.argv[1:])
     logging.getLogger().setLevel(logging_level)
+    logger = logging.getLogger(__name__)
 
     uri = uri_modifier(uri)
     logger.info("Uri: {}. Exporter: {}".format(uri, exporter))
