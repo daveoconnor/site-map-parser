@@ -1,7 +1,17 @@
 import argparse
 import inspect
+import os
 import logging
 from . import exporters
+
+
+def get_logging_config():
+    log_config = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        'logging_config.ini'
+    )
+    log_file = os.path.join(os.path.expanduser("~"), 'sitemap_run.log')
+    return log_config, log_file
 
 
 def get_exporters():

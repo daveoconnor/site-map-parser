@@ -1,5 +1,27 @@
-from sitemapparser.smapper_utils import uri_modifier, get_args
+from sitemapparser.smapper_utils import uri_modifier, get_args, get_logging_config, get_exporters
+import os
 import argparse
+from unittest.mock import MagicMock
+
+
+def test_get_logging_config(monkeypatch):
+    def mock_expanduser(value):
+        return "/home/test"
+
+    monkeypatch.setattr(os.path, "expanduser", mock_expanduser)
+    logging_config, log_file = get_logging_config()
+
+    assert os.path.exists(logging_config)
+    assert log_file == "/home/test/sitemap_run.log"
+
+
+def test_get_exporters():
+    exporters = get_exporters()
+    assert len(exporters) == 2
+    assert 'csv' in exporters
+    assert 'json' in exporters
+    assert 'fake' not in exporters
+
 
 def test_uri_modifier_begins():
     test_url1 = 'example.com'
