@@ -21,17 +21,17 @@ class TestExporter:
         assert len(json_data_parsed) == 3
         assert json_data_parsed[0]['loc'] == 'http://www.example1.com'
         assert json_data_parsed[1]['loc'] == 'http://www.example2.com'
-        assert json_data_parsed[1]['lastmod'] == '2010-10-01T18:32:17+00:00'
+        assert str(json_data_parsed[1]['lastmod']) == '2010-10-01T18:32:17+00:00'
         assert json_data_parsed[2]['loc'] == 'http://www.example3.com/sitemap.xml'
-        assert json_data_parsed[2]['lastmod'] == '2010-10-01T18:32:17+00:00'
+        assert str(json_data_parsed[2]['lastmod']) == '2010-10-01T18:32:17+00:00'
 
     def test_export_urls(self):
         mock_url_set = MagicMock()
         mock_url_set.get_urls = MagicMock(return_value=[
-            Url('http://www.example.com/page/a/1', '2005-05-06', 'monthly', '0.8'),
-            Url('http://www.example.com/page/a/2', '2006-07-08', 'monthly', '0.8'),
-            Url('http://www.example.com/page/a/3', '2007-09-10', 'monthly', '0.9'),
-            Url('http://www.example.com/page/a/4', '2008-11-12', 'monthly', '1.0'),
+            Url('http://www.example.com/page/a/1', '2005-05-06T00:00:00', 'monthly', '0.8'),
+            Url('http://www.example.com/page/a/2', '2006-07-08T00:00:00', 'monthly', '0.8'),
+            Url('http://www.example.com/page/a/3', '2007-09-10T00:00:00', 'monthly', '0.9'),
+            Url('http://www.example.com/page/a/4', '2008-11-12T00:00:00', 'monthly', '1.0'),
         ])
         json_exporter = JSONExporter(mock_url_set)
         json_data = json_exporter.export_urls()
@@ -39,18 +39,18 @@ class TestExporter:
 
         assert len(json_data_parsed) == 4
         assert json_data_parsed[0]['loc'] == 'http://www.example.com/page/a/1'
-        assert json_data_parsed[0]['lastmod'] == '2005-05-06'
+        assert str(json_data_parsed[0]['lastmod']) == '2005-05-06T00:00:00'
         assert json_data_parsed[0]['changefreq'] == 'monthly'
         assert json_data_parsed[0]['priority'] == '0.8'
         assert json_data_parsed[1]['loc'] == 'http://www.example.com/page/a/2'
-        assert json_data_parsed[1]['lastmod'] == '2006-07-08'
+        assert str(json_data_parsed[1]['lastmod']) == '2006-07-08T00:00:00'
         assert json_data_parsed[1]['changefreq'] == 'monthly'
         assert json_data_parsed[1]['priority'] == '0.8'
         assert json_data_parsed[2]['loc'] == 'http://www.example.com/page/a/3'
-        assert json_data_parsed[2]['lastmod'] == '2007-09-10'
+        assert str(json_data_parsed[2]['lastmod']) == '2007-09-10T00:00:00'
         assert json_data_parsed[2]['changefreq'] == 'monthly'
         assert json_data_parsed[2]['priority'] == '0.9'
         assert json_data_parsed[3]['loc'] == 'http://www.example.com/page/a/4'
-        assert json_data_parsed[3]['lastmod'] == '2008-11-12'
+        assert str(json_data_parsed[3]['lastmod']) == '2008-11-12T00:00:00'
         assert json_data_parsed[3]['changefreq'] == 'monthly'
         assert json_data_parsed[3]['priority'] == '1.0'

@@ -1,5 +1,7 @@
+from datetime import datetime
 import pytest
 from sitemapparser.url import Url
+
 
 class TestUrl:
     def test_init_fully_loaded(self):
@@ -10,7 +12,8 @@ class TestUrl:
             priority='0.3',
         )
         assert u.loc == 'http://www.example2.com/index2.html'
-        assert u.lastmod == '2010-11-04T17:21:18+00:00'
+        assert type(u.lastmod) is datetime
+        assert str(u.lastmod) == '2010-11-04 17:21:18+00:00'
         assert u.changefreq == 'never'
         assert u.priority == '0.3'
 

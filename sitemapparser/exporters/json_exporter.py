@@ -1,12 +1,25 @@
 from json import dumps
+from datetime import datetime
 from ..exporter import Exporter
+from ..url import Url
+from ..sitemap import Sitemap
 
 
 class JSONExporter(Exporter):
     short_name = 'json'
 
+    def _collate(self, fields, row_data):
+        dump_data = []
+        for sm in row_data:
+            row = {}
+            for field in fields:
+                v = getattr(sm, field)
+                row[field] = v if type(v) is not datetime else v.isoformat()
+            dump_data.append(row)
+        return dump_data
+
     def export_sitemaps(self):
-        return dumps(list(sm.__dict__ for sm in self.data.get_sitemaps()))
+        return dumps(self._collate(Sitemap.fields, self.data.get_sitemaps()))
 
     def export_urls(self):
-        return dumps(list(u.__dict__ for u in self.data.get_urls()))
+        return dumps(self._collate(Url.fields, self.data.get_urls()))

@@ -1,4 +1,7 @@
-class Url:
+from .base_data import BaseData
+
+
+class Url(BaseData):
     fields = 'loc', 'lastmod', 'changefreq', 'priority'
 
     def __init__(self, loc, lastmod=None, changefreq=None, priority=None):

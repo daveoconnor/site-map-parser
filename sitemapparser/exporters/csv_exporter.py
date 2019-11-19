@@ -3,12 +3,18 @@ import io
 from ..exporter import Exporter
 from ..url import Url
 from ..sitemap import Sitemap
+from datetime import datetime
 
 
 class CSVExporter(Exporter):
     short_name = 'csv'
 
     def export_sitemaps(self):
+        """
+        returns csv data with format:
+        url: string
+        lastmod: ISO8601 format date
+        """
         buffer = io.StringIO()
         writer = csv.DictWriter(
             buffer,
@@ -18,11 +24,22 @@ class CSVExporter(Exporter):
         )
         writer.writeheader()
         for sm in self.data.get_sitemaps():
-            writer.writerow(sm.__dict__)
+            row = {}
+            for field in Sitemap.fields:
+                v = getattr(sm, field)
+                row[field] = v if type(v) is not datetime else v.isoformat()
+            writer.writerow(row)
 
         return buffer.getvalue().rstrip()
 
     def export_urls(self):
+        """
+        returns csv data with format:
+        url: string
+        lastmod: ISO8601 format date
+        changefreq: string
+        priority: float, 0-1
+        """
         buffer = io.StringIO()
         writer = csv.DictWriter(
             buffer,
@@ -32,6 +49,10 @@ class CSVExporter(Exporter):
         )
         writer.writeheader()
         for url in self.data.get_urls():
-            writer.writerow(url.__dict__)
+            row = {}
+            for field in Url.fields:
+                v = getattr(url, field)
+                row[field] = v if type(v) is not datetime else v.isoformat()
+            writer.writerow(row)
 
         return buffer.getvalue().rstrip()

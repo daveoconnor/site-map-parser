@@ -18,7 +18,10 @@ class TestExporter:
         csv_data = csv_exporter.export_sitemaps()
         csv_data_parsed = list(csv.DictReader(csv_data.split("\r\n"), quoting=csv.QUOTE_NONNUMERIC))
 
+        print("csv_data \n %s" % csv_data)
+
         assert csv_data_parsed[0]['loc'] == 'http://www.example1.com'
+        assert csv_data_parsed[0]['lastmod'] == ''
         assert csv_data_parsed[1]['loc'] == 'http://www.example2.com'
         assert csv_data_parsed[1]['lastmod'] == '2010-10-01T18:32:17+00:00'
         assert csv_data_parsed[2]['loc'] == 'http://www.example3.com/sitemap.xml'
@@ -37,18 +40,18 @@ class TestExporter:
         csv_data_parsed = list(csv.DictReader(csv_data.split("\r\n"), quoting=csv.QUOTE_NONNUMERIC))
 
         assert csv_data_parsed[0]['loc'] == 'http://www.example.com/page/a/1'
-        assert csv_data_parsed[0]['lastmod'] == '2005-05-06'
+        assert csv_data_parsed[0]['lastmod'] == '2005-05-06T00:00:00'
         assert csv_data_parsed[0]['changefreq'] == 'monthly'
         assert csv_data_parsed[0]['priority'] == '0.8'
         assert csv_data_parsed[1]['loc'] == 'http://www.example.com/page/a/2'
-        assert csv_data_parsed[1]['lastmod'] == '2006-07-08'
+        assert csv_data_parsed[1]['lastmod'] == '2006-07-08T00:00:00'
         assert csv_data_parsed[1]['changefreq'] == 'monthly'
         assert csv_data_parsed[1]['priority'] == '0.8'
         assert csv_data_parsed[2]['loc'] == 'http://www.example.com/page/a/3'
-        assert csv_data_parsed[2]['lastmod'] == '2007-09-10'
+        assert csv_data_parsed[2]['lastmod'] == '2007-09-10T00:00:00'
         assert csv_data_parsed[2]['changefreq'] == 'monthly'
         assert csv_data_parsed[2]['priority'] == '0.9'
         assert csv_data_parsed[3]['loc'] == 'http://www.example.com/page/a/4'
-        assert csv_data_parsed[3]['lastmod'] == '2008-11-12'
+        assert csv_data_parsed[3]['lastmod'] == '2008-11-12T00:00:00'
         assert csv_data_parsed[3]['changefreq'] == 'monthly'
         assert csv_data_parsed[3]['priority'] == '1.0'

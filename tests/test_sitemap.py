@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime
 from sitemapparser.sitemap import Sitemap
 
 
@@ -10,7 +11,8 @@ class TestSitemap:
         )
 
         assert s.loc == 'http://www.example.com/index.html'
-        assert s.lastmod == '2004-10-01T18:24:19+00:00'
+        assert type(s.lastmod) == datetime
+        assert s.lastmod.isoformat() == '2004-10-01T18:24:19+00:00'
 
     def test_str(self):
         s = Sitemap(

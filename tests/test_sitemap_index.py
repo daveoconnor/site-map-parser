@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime
 from lxml import etree
 from io import BytesIO
 from sitemapparser.sitemap_index import SitemapIndex
@@ -16,7 +17,8 @@ class TestSitemapIndex:
         sm = SitemapIndex.sitemap_from_sitemap_element(self.sitemap_index_element_xml)
         assert isinstance(sm, Sitemap)
         assert sm.loc == 'http://www.example.com/sitemap_a.xml'
-        assert sm.lastmod == '2004-10-01T18:23:17+00:00'
+        assert type(sm.lastmod) is datetime
+        assert str(sm.lastmod) == '2004-10-01 18:23:17+00:00'
 
     def test_sitemaps_from_sitemap_index_element(self):
         si = SitemapIndex.sitemaps_from_sitemap_index_element(self.sitemap_index_xml_root)

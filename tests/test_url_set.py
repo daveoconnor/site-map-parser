@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime
 from lxml import etree
 from io import BytesIO
 from sitemapparser.url_set import UrlSet
@@ -23,7 +24,8 @@ class TestUrlSet:
         url = UrlSet.url_from_url_element(self.url_element_1)
         assert isinstance(url, Url)
         assert url.loc == 'http://www.example.com/page/a/1'
-        assert url.lastmod == '2005-01-01'
+        assert type(url.lastmod) is datetime
+        assert str(url.lastmod) == '2005-01-01 00:00:00'
         assert url.changefreq == 'monthly'
         assert url.priority == '0.8'
 
