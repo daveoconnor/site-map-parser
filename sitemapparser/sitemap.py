@@ -1,4 +1,6 @@
 class Sitemap:
+    fields = 'loc', 'lastmod'
+
     def __init__(self, loc, lastmod=None):
         """
         Representation of the <sitemap> element

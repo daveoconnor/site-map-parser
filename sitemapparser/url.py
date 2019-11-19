@@ -1,4 +1,6 @@
 class Url:
+    fields = 'loc', 'lastmod', 'changefreq', 'priority'
+
     def __init__(self, loc, lastmod=None, changefreq=None, priority=None):
         """
         Representation of the <url> element

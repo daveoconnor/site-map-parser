@@ -1,6 +1,8 @@
 import csv
 import io
 from ..exporter import Exporter
+from ..url import Url
+from ..sitemap import Sitemap
 
 
 class CSVExporter(Exporter):
@@ -11,7 +13,7 @@ class CSVExporter(Exporter):
         writer = csv.DictWriter(
             buffer,
             delimiter=",",
-            fieldnames=['loc', 'lastmod'],
+            fieldnames=Sitemap.fields,
             quoting=csv.QUOTE_NONNUMERIC
         )
         writer.writeheader()
@@ -25,7 +27,7 @@ class CSVExporter(Exporter):
         writer = csv.DictWriter(
             buffer,
             delimiter=",",
-            fieldnames=['loc', 'lastmod', 'changefreq', 'priority'],
+            fieldnames=Url.fields,
             quoting=csv.QUOTE_NONNUMERIC
         )
         writer.writeheader()
