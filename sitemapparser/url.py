@@ -3,6 +3,8 @@ from .base_data import BaseData
 
 class Url(BaseData):
     fields = 'loc', 'lastmod', 'changefreq', 'priority'
+    valid_freqs = ('always', 'hourly', 'daily', 'weekly', 'monthly',
+                   'yearly', 'never')
 
     def __init__(self, loc, lastmod=None, changefreq=None, priority=None):
         """
@@ -17,16 +19,18 @@ class Url(BaseData):
         self.changefreq = changefreq
         self.priority = priority
 
-        # TODO: restrict changefreq to
-        #    always
-        #    hourly
-        #    daily
-        #    weekly
-        #    monthly
-        #    yearly
-        #    never
-        # TODO: convert lastmod to be a DateTime object
         # TODO: confirm priority is a float between 0.0 to 1.0
+
+    @property
+    def changefreq(self):
+        return self._changefreq
+
+    @changefreq.setter
+    def changefreq(self, frequency):
+        if frequency is not None and frequency not in Url.valid_freqs:
+            error_msg = "'{}' is not an allowed value: {}"
+            raise ValueError(error_msg.format(frequency, Url.valid_freqs))
+        self._changefreq = frequency
 
     def __str__(self):
         return self.loc
