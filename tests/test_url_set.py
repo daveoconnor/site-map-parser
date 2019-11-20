@@ -27,7 +27,7 @@ class TestUrlSet:
         assert type(url.lastmod) is datetime
         assert str(url.lastmod) == '2005-01-01 00:00:00'
         assert url.changefreq == 'monthly'
-        assert url.priority == '0.8'
+        assert url.priority == 0.8
 
     def test_urls_from_url_set_element(self):
         urls = UrlSet.urls_from_url_set_element(self.url_set_element)

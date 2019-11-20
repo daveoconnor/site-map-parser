@@ -15,9 +15,10 @@ class TestUrl:
         assert type(u.lastmod) is datetime
         assert str(u.lastmod) == '2010-11-04 17:21:18+00:00'
         assert u.changefreq == 'never'
-        assert u.priority == '0.3'
+        assert type(u.priority) is float
+        assert u.priority == 0.3
 
-    def test_valid_changefreqs(self):
+    def test_changefreq(self):
         u = Url(
             loc='http://www.example.com/index.html',
             changefreq="always"
@@ -40,6 +41,24 @@ class TestUrl:
 
         with pytest.raises(ValueError):
             u.changefreq = 'foobar'
+
+    def test_priority(self):
+        u = Url(
+            loc='http://www.example/com/index.html',
+            priority='0.6'
+        )
+        assert u.priority == 0.6
+        u.priority = 0.3
+        assert u.priority == 0.3
+        u.priority = 0.0
+        assert u.priority == 0.0
+        u.priority = 1.0
+        assert u.priority == 1.0
+
+        with pytest.raises(ValueError):
+            u.priority = 1.1
+        with pytest.raises(ValueError):
+            u.priority = -0.1
 
     def test_str(self):
         s = Url(loc='http://www.example2.com/index2.html')

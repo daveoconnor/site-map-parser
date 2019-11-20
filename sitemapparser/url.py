@@ -32,5 +32,17 @@ class Url(BaseData):
             raise ValueError(error_msg.format(frequency, Url.valid_freqs))
         self._changefreq = frequency
 
+    @property
+    def priority(self):
+        return self._priority
+
+    @priority.setter
+    def priority(self, priority):
+        if priority is not None:
+            priority = float(priority)
+            if priority < 0.0 or priority > 1.0:
+                raise ValueError("'{}' is not between 0.0 and 1.0")
+        self._priority = priority
+
     def __str__(self):
         return self.loc
