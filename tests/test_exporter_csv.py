@@ -18,8 +18,6 @@ class TestExporter:
         csv_data = csv_exporter.export_sitemaps()
         csv_data_parsed = list(csv.DictReader(csv_data.split("\r\n"), quoting=csv.QUOTE_NONNUMERIC))
 
-        print("csv_data \n %s" % csv_data)
-
         assert csv_data_parsed[0]['loc'] == 'http://www.example1.com'
         assert csv_data_parsed[0]['lastmod'] == ''
         assert csv_data_parsed[1]['loc'] == 'http://www.example2.com'
