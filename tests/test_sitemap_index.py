@@ -26,4 +26,4 @@ class TestSitemapIndex:
 
     def test_init(self):
         smi = SitemapIndex(self.sitemap_index_xml_root)
-        assert len(list(smi.sitemaps)) == 2
+        assert len(list(smi)) == 2

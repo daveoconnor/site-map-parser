@@ -20,12 +20,10 @@ class SiteMapParser:
 
         if self.is_sitemap_index:
             self.logger.info("Root element is sitemap index")
-            index = SitemapIndex(root_element)
-            self._sitemaps = index.sitemaps
+            self._sitemaps = SitemapIndex(root_element)
         else:
             self.logger.info("Root element is url set")
-            url_set = UrlSet(root_element)
-            self._url_set = url_set.urls
+            self._url_set = UrlSet(root_element)
 
     @staticmethod
     def _is_sitemap_index_element(element):

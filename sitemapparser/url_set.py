@@ -6,7 +6,7 @@ class UrlSet:
     allowed_fields = ['loc', 'lastmod', 'changefreq', 'priority']
 
     def __init__(self, urlset_element):
-        self.urls = self.urls_from_url_set_element(urlset_element)
+        self.urlset_element = urlset_element
 
     @staticmethod
     def url_from_url_element(url_element):
@@ -29,3 +29,6 @@ class UrlSet:
 
         for url_element in url_set_element:
             yield UrlSet.url_from_url_element(url_element)
+
+    def __iter__(self):
+        return UrlSet.urls_from_url_set_element(self.urlset_element)

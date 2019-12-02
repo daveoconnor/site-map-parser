@@ -77,3 +77,27 @@ class TestSiteMapper:
             sm = SiteMapParser('http://www.url-example.com')
             assert sm.has_urls() is True
             assert sm.has_sitemaps() is False
+
+    def test_get_urls_multiple_iters(self):
+        with requests_mock.mock() as m:
+            us_data = open('tests/urlset_a.xml', 'rb').read()
+            m.get('http://www.url-example.com', content=us_data)
+            sm = SiteMapParser('http://www.url-example.com')
+            urls_1 = iter(sm.get_urls())
+            urls_2 = iter(sm.get_urls())
+            assert str(next(urls_1)) == 'http://www.example.com/page/a/1'
+            assert str(next(urls_2)) == 'http://www.example.com/page/a/1'
+            assert str(next(urls_1)) == 'http://www.example.com/page/a/2'
+            assert str(next(urls_1)) == 'http://www.example.com/page/a/3'
+
+    def test_get_sitemaps_multiple_iters(self):
+        with requests_mock.mock() as m:
+            us_data = open('tests/sitemap_index_data.xml', 'rb').read()
+            m.get('http://www.url-example.com', content=us_data)
+            sm = SiteMapParser('http://www.url-example.com')
+            sm_1 = iter(sm.get_sitemaps())
+            sm_2 = iter(sm.get_sitemaps())
+
+            assert str(next(sm_1)) == 'http://www.example.com/sitemap_a.xml'
+            assert str(next(sm_1)) == 'https://www.example.com/sitemap_b.xml'
+            assert str(next(sm_2)) == 'http://www.example.com/sitemap_a.xml'

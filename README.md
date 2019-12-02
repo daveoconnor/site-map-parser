@@ -36,9 +36,9 @@ from sitemapparser import SiteMapParser
 
 sm = SiteMapParser('http://www.example.com')    # reads /sitemap.xml
 if sm.has_sitemaps():
-    sitemaps = sm.getSitemaps() # returns generator of sitemapper.Sitemap instances
+    sitemaps = sm.get_sitemaps() # returns iterator of sitemapper.Sitemap instances
 else:
-    urls = sm.getUrls()         # returns generator of sitemapper.Url instances
+    urls = sm.get_urls()         # returns iterator of sitemapper.Url instances
 ```
 
 #### Exporting

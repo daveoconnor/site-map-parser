@@ -35,4 +35,4 @@ class TestUrlSet:
 
     def test_init(self):
         u = UrlSet(self.url_set_element)
-        assert len(list(u.urls)) == 3
+        assert len(list(u)) == 3

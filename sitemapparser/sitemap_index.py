@@ -5,10 +5,11 @@ import logging
 class SitemapIndex:
     def __init__(self, index_element):
         """
-        Creates a 'sitemaps' property, an iterator for children of an lxml <sitemapindex> representation
+        Creates a 'sitemaps' property, an iterator for children of an
+        lxml <sitemapindex> representation
         :param index_element: lxml 'sitemapindex' element
         """
-        self.sitemaps = self.sitemaps_from_sitemap_index_element(index_element)
+        self.index_element = index_element
 
     @staticmethod
     def sitemap_from_sitemap_element(sitemap_element):
@@ -42,3 +43,8 @@ class SitemapIndex:
         sitemaps = index_element.findall("./*")
         for sm_element in sitemaps:
             yield SitemapIndex.sitemap_from_sitemap_element(sm_element)
+
+    def __iter__(self):
+        return SitemapIndex.sitemaps_from_sitemap_index_element(
+            self.index_element
+        )
