@@ -16,7 +16,7 @@ class SiteMapParser:
         data = download_uri_data(uri)
         root_element = data_to_element(data)
 
-        self.is_sitemap_index = True if self._is_sitemap_index_element(root_element) else False
+        self.is_sitemap_index = self._is_sitemap_index_element(root_element)
 
         if self.is_sitemap_index:
             self.logger.info("Root element is sitemap index")
@@ -27,36 +27,36 @@ class SiteMapParser:
 
     @staticmethod
     def _is_sitemap_index_element(element):
-        return True if len(element.xpath("/*[local-name()='sitemapindex']")) else False
+        return bool(len(element.xpath("/*[local-name()='sitemapindex']")))
 
     @staticmethod
     def _is_url_set_element(element):
-        return True if len(element.xpath("/*[local-name()='urlset']")) else False
+        return bool(len(element.xpath("/*[local-name()='urlset']")))
 
     def get_sitemaps(self):
         """
-        Retrieve the sitemaps. Can check if 'has_sitemaps()' returns True to determine if this
-        should be used without calling it
+        Retrieve the sitemaps. Can check if 'has_sitemaps()' returns True to
+        determine if this should be used without calling it
 
         :return: iter(Sitemap)
         """
         if not self.has_sitemaps():
-            error_msg = "Called 'get_sitemaps()' when root is not a <sitemapindex>"
+            error_msg = "Method called when root is not a <sitemapindex>"
             self.logger.critical(error_msg)
-            raise KeyError
+            raise KeyError(error_msg)
         return self._sitemaps
 
     def get_urls(self):
         """
-        Retrieve the urls. Can check if 'has_urls()' returns True to determine if this
-        should be used without actually calling it.
+        Retrieve the urls. Can check if 'has_urls()' returns True to determine
+        if this should be used without actually calling it.
 
         :return: iter(Url)
         """
         if not self.has_urls():
-            error_msg = "Called 'get_urls()' when root is not a <urlset>"
+            error_msg = "Method called when root is not a <urlset>"
             self.logger.critical(error_msg)
-            raise KeyError
+            raise KeyError(error_msg)
         return self._url_set
 
     def has_sitemaps(self):

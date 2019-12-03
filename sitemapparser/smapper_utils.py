@@ -1,5 +1,5 @@
 import argparse
-import inspect
+from inspect import getmembers, isclass
 import os
 import logging
 from . import exporters
@@ -15,7 +15,7 @@ def get_logging_config():
 
 
 def get_exporters():
-    return {m[1].short_name: m[1] for m in inspect.getmembers(exporters, inspect.isclass)}
+    return {m[1].short_name: m[1] for m in getmembers(exporters, isclass)}
 
 
 def uri_modifier(url):

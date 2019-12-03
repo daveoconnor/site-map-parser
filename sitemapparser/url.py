@@ -12,7 +12,7 @@ class Url(BaseData):
         :param loc: String, URL of the page.
         :param lastmod: DateTime, The date of last modification of the file.
         :param changefreq: String, How frequently the page is likely to change.
-        :param priority: String, The priority of this URL relative to other URLs on your site.
+        :param priority: String, The priority of this URL relative to others.
         """
         self.loc = loc
         self.lastmod = lastmod

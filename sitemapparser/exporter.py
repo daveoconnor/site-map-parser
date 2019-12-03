@@ -8,7 +8,9 @@ class Exporter(metaclass=ABCMeta):
     @property
     @abstractmethod
     def short_name(self):
-        """Name which will be passed as an argument as the 'exporter', .e.g 'csv'"""
+        """
+        Name which will be passed as an argument as the 'exporter', .e.g 'csv'
+        """
         raise NotImplementedError
 
     @abstractmethod

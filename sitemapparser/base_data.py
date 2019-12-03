@@ -2,6 +2,7 @@ import re
 from abc import ABCMeta
 from dateutil import parser
 
+
 class BaseData(metaclass=ABCMeta):
     def __init__(self):
         self._lastmod = None
