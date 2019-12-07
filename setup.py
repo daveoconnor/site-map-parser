@@ -1,20 +1,20 @@
 import setuptools
 from os import sys
-import pypandoc
 
 needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
 pytest_runner = ['pytest-runner'] if needs_pytest else []
 
-long_description = pypandoc.convert_file('README.md', 'rst')
-long_description = long_description.replace("\r", "")
+with open('README.md') as readme:
+    long_description = readme.read()
 
 setuptools.setup(
     name="site-map-parser",
-    version="0.3.0",
+    version="0.3.3",
     author="Dave O'Connor",
     author_email="github@dead-pixels.org",
     description="Script/Library to read and parse sitemap.xml data",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/daveoconnor/site-map-parser",
     packages=setuptools.find_packages(),
     classifiers=[
