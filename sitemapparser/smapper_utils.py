@@ -20,7 +20,7 @@ def get_exporters():
 
 def uri_modifier(url):
     if not url.startswith('https://') and not url.startswith('http://'):
-        url = 'http://'+url
+        url = 'http://' + url
 
     if not url.endswith('.xml'):
         if not url.endswith('/'):

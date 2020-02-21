@@ -1,12 +1,11 @@
-from abc import abstractmethod, ABCMeta
+from abc import abstractmethod, abstractproperty, ABCMeta
 
 
 class Exporter(metaclass=ABCMeta):
     def __init__(self, data):
         self.data = data
 
-    @property
-    @abstractmethod
+    @abstractproperty
     def short_name(self):
         """
         Name which will be passed as an argument as the 'exporter', .e.g 'csv'

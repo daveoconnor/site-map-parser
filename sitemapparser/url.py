@@ -19,8 +19,6 @@ class Url(BaseData):
         self.changefreq = changefreq
         self.priority = priority
 
-        # TODO: confirm priority is a float between 0.0 to 1.0
-
     @property
     def changefreq(self):
         return self._changefreq

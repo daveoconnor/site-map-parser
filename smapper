@@ -2,14 +2,15 @@
 import logging
 import sys
 from sitemapparser import SiteMapParser
-from sitemapparser.smapper_utils import uri_modifier, get_args, get_exporters, get_logging_config
+from sitemapparser.smapper_utils import (uri_modifier, get_args, get_exporters,
+                                         get_logging_config)
 from logging.config import fileConfig
 
 
 def main():
     try:
         log_config, log_file = get_logging_config()
-        fileConfig(log_config, defaults={ 'logfilename': log_file})
+        fileConfig(log_config, defaults={'logfilename': log_file})
     except KeyError:
         print("An error occurred reading logging_config.ini")
 
@@ -24,7 +25,7 @@ def main():
         sm = SiteMapParser(uri)
     except SyntaxError as e:
         logger.critical("Parsing error: {}".format(e))
-        print("An error occurred. Please check sitemap_parser_run.log for details")
+        print("An error occurred. Please check sitemap_parser_run.log")
         sys.exit(1)
 
     exporters = get_exporters()
