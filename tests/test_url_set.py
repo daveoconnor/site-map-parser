@@ -11,7 +11,10 @@ class TestUrlSet:
     def setup(self):
         url_set_data_bytes = open('tests/urlset_a.xml', 'rb').read()
         utf8_parser = etree.XMLParser(encoding='utf-8')
-        self.url_set_data_xml = etree.parse(BytesIO(url_set_data_bytes), parser=utf8_parser)
+        self.url_set_data_xml = etree.parse(
+            BytesIO(url_set_data_bytes),
+            parser=utf8_parser
+        )
         self.url_set_element = self.url_set_data_xml.getroot()
         self.url_element_1 = self.url_set_data_xml.getroot()[0]
         self.url_element_2 = self.url_set_data_xml.getroot()[1]
