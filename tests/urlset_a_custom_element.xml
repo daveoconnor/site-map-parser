@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>http://www.example.com/page/a/4</loc>
+      <lastmod>2006-05-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.3</priority>
+      <breakstuff foo="bar" />
+   </url>
+</urlset>
