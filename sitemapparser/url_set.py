@@ -15,9 +15,8 @@ class UrlSet:
         url_data = {}
         for ele in url_element:
             name = ele.xpath('local-name()')
-            value = ele.xpath('text()')[0]
             if name in UrlSet.allowed_fields:
-                url_data[name] = value
+                url_data[name] = ele.xpath('text()')[0]
 
         logger.debug("url_data {}".format(url_data))
         return Url(**url_data)
