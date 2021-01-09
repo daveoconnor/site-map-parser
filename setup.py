@@ -9,7 +9,7 @@ with open('README.md') as readme:
 
 setuptools.setup(
     name="site-map-parser",
-    version="0.3.5",
+    version="0.3.6",
     author="Dave O'Connor",
     author_email="github@dead-pixels.org",
     description="Script/Library to read and parse sitemap.xml data",
