@@ -9,5 +9,5 @@ if [[ $? == 1 ]]; then
 fi;
 python3 -m pip install twine
 python3 setup.py sdist bdist_wheel
-python3 -m twine upload -u __token__ -p $TEST_PASSWORD --non-interactive --repository testpypi dist/*
-python3 -m twine upload -u __token__ -p $LIVE_PASSWORD --non-interactive dist/*
+python3 -m twine upload -u __token__ -p $TEST_TOKEN --non-interactive --repository testpypi dist/*
+python3 -m twine upload -u __token__ -p $LIVE_TOKEN --non-interactive dist/*
