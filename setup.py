@@ -1,6 +1,9 @@
 import setuptools
 from os import sys
 
+needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
+pytest_runner = ['pytest-runner'] if needs_pytest else []
+
 with open('README.md') as readme:
     long_description = readme.read()
 
@@ -30,6 +33,7 @@ setuptools.setup(
     },
     python_requires='>=3.6',
     tests_require=["pytest"],
+    setup_requires=[] + pytest_runner,
     install_requires=[
         'lxml',
         'requests',
