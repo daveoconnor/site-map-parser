@@ -13,7 +13,7 @@ for VERSION in $VERSIONS
 		fi;
 		deactivate
 done
-python3 -m pip install twine wheel
-python3 setup.py sdist bdist_wheel
-python3 -m twine upload -u __token__ -p $TEST_TOKEN --non-interactive --repository testpypi dist/*
-python3 -m twine upload -u __token__ -p $LIVE_TOKEN --non-interactive dist/*
+python3.8 -m pip install twine wheel
+python3.8 setup.py sdist bdist_wheel
+python3.8 -m twine upload -u __token__ -p $TEST_TOKEN --non-interactive --repository testpypi dist/*
+python3.8 -m twine upload -u __token__ -p $LIVE_TOKEN --non-interactive dist/*
