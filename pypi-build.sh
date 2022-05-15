@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSIONS="3.6 3.7 3.8 3.9"
+VERSIONS="3.7 3.8 3.9"
 for VERSION in $VERSIONS
 	do
 		python3 -m virtualenv --python=python$VERSION venv$VERSION
